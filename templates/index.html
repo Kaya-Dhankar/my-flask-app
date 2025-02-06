@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit Card Fraud Detector</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-control:focus, .form-select:focus {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: none;
+            color: white;
+        }
+        .form-select {
+            appearance: none;
+            padding-right: 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .form-select option {
+            background: #1c2b3a;
+            color: white;
+        }
+        .btn-custom {
+            background: #ff9800;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #e68a00;
+            box-shadow: 0px 0px 8px rgba(255, 152, 0, 0.7);
+        }
+        .btn-reset {
+            background: #d32f2f;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .btn-reset:hover {
+            background: #b71c1c;
+            box-shadow: 0px 0px 8px rgba(211, 47, 47, 0.7);
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card text-white">
+        <h3 class="text-center mb-3"><i class="fas fa-credit-card"></i> Credit Card Fraud Detector</h3>
+        <form id="fraudForm">
+            <!-- Account Number -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-user"></i> Account Number</label>
+                <input type="text" class="form-control" placeholder="Enter Account Number" required>
+            </div>
+
+            <!-- Transaction Time -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-clock"></i> Transaction Time</label>
+                <input type="time" class="form-control" required>
+            </div>
+
+            <!-- Transaction Amount -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-money-bill-wave"></i> Transaction Amount (₹)</label>
+                <input type="number" class="form-control" placeholder="Enter Amount" required>
+            </div>
+
+            <!-- Transaction Type -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-exchange-alt"></i> Transaction Type</label>
+                <select class="form-select">
+                    <option>Online</option>
+                    <option>Offline</option>
+                </select>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-credit-card"></i> Payment Method</label>
+                <select class="form-select">
+                    <option>Credit Card</option>
+                    <option>Debit Card</option>
+                    <option>UPI</option>
+                    <option>Net Banking</option>
+                </select>
+            </div>
+
+            <!-- New Device? -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-laptop"></i> Is the Transaction from a New Device?</label>
+                <select class="form-select" id="newDevice">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <!-- Device Type -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-mobile-alt"></i> Device Type</label>
+                <select class="form-select">
+                    <option>Mobile</option>
+                    <option>Desktop</option>
+                </select>
+            </div>
+
+            <!-- Buttons (Horizontally Aligned) -->
+            <div class="btn-group mt-3">
+                <button type="button" class="btn btn-custom" onclick="analyzeTransaction()"><i class="fas fa-check-circle"></i> Submit</button>
+                <button type="reset" class="btn btn-reset"><i class="fas fa-sync-alt"></i> Reset</button>
+            </div>
+        </form>
+        <div id="result"></div>
+    </div>
+</div>
+
+<script>
+    function analyzeTransaction() {
+        const newDevice = document.getElementById("newDevice").value;
+        let resultText = "Genuine Transaction";
+        if (newDevice === "yes") {
+            resultText = "Potential Fraud Detected";
+        }
+        document.getElementById("result").innerHTML = resultText;
+    }
+</script>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
