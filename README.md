@@ -23,8 +23,10 @@ Backend: Flask (for building the web application)
 
 Machine Learning: Python (Random Forest, Scikit-learn), Pickle (for model persistence)
 
+Data Processing: Pandas (for dataset manipulation), NumPy (for handling numerical data)
+
 # Output:
 
 ![Image](https://github.com/user-attachments/assets/adb37540-e185-475a-9c36-9a136ce89f92)
 
-Data Processing: Pandas (for dataset manipulation), NumPy (for handling numerical data)
+
